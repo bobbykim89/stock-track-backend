@@ -1,0 +1,24 @@
+{
+  "name": "stock-track-backend",
+  "version": "0.1.0",
+  "description": "Backend part of stock-track using node express mongoose and graphql",
+  "main": "server.js",
+  "author": "Bobby Kim",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.3.0",
+    "mongoose": "^6.2.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
