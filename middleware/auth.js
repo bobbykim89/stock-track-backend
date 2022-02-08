@@ -4,10 +4,15 @@ if (process.env.NODE_ENV !== 'production') {
 const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
-  const token = req.header('x-auth-token')
-
+  const authHeader = req.get('Authorization')
+  // Check existance of auth header
+  if (!authHeader) {
+    req.auth = false
+    return next()
+  }
+  const token = authHeader.split(' ')[1]
   // Check if token doesn't exist
-  if (!token) {
+  if (!token || token === '') {
     req.auth = false
     return next()
   }
@@ -21,6 +26,6 @@ module.exports = (req, res, next) => {
     next()
   } catch (err) {
     req.auth = false
-    res.status(401).json({ msg: 'Token is not valid.' })
+    throw err
   }
 }
