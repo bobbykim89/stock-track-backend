@@ -3,6 +3,7 @@ const { graphqlHTTP } = require('express-graphql')
 const cors = require('cors')
 const connectDB = require('./database')
 const schema = require('./schema/index')
+const auth = require('./middleware/auth')
 
 const app = express()
 
@@ -11,6 +12,9 @@ connectDB()
 
 // Allow cross-origin requests
 app.use(cors())
+
+// Apply auth check middleware
+app.use(auth)
 
 // Serve app using GraphQL
 app.use('/graphql', graphqlHTTP({ schema, graphiql: true }))
