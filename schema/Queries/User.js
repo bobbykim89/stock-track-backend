@@ -10,11 +10,10 @@ const {
 
 const user = require('../../models/user')
 const UserType = require('../Types/userType')
-const auth = require('../../middleware/auth')
 
 const GET_CURRENT_USER = {
   type: UserType,
-  async resolve(req, res) {
+  async resolve(root, args, req) {
     if (!req.auth) {
       throw new Error('Unauthenticated')
     }
