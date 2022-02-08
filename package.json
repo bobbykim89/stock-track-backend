@@ -5,7 +5,6 @@
   "main": "server.js",
   "author": "Bobby Kim",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js"
