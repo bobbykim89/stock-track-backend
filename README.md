@@ -7,11 +7,11 @@ Backend part of MEVNG stack application to get stock info.
 ### Start: `yarn start`
 
 Runs server
-Port 4000 assigned [http://localhost:4000](http://localhost:4000)
+Port 4000 assigned [http://localhost:4000/graphql](http://localhost:4000/graphql)
 
 ### Watch: `yarn watch`
 
-Runs server using nodemon on [http://localhost:4000](http://localhost:4000)
+Runs server using nodemon on [http://localhost:4000/graphql](http://localhost:4000/graphql)
 
 ## Dependencies
 
