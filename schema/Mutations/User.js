@@ -41,6 +41,7 @@ const SIGNUP_USER = {
         user: {
           id: newUser.id,
           username: newUser.username,
+          email: newUser.email,
         },
       }
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -49,6 +50,7 @@ const SIGNUP_USER = {
       return {
         username: newUser.username,
         email: newUser.email,
+        id: newUser.id,
         password: newUser.password,
         token: token,
       }
@@ -72,7 +74,7 @@ const LOGIN_USER = {
           'Invalid user info, please check email or password again'
         )
       }
-      const { username, email, password } = getUser
+      const { username, email, password, id } = getUser
       const checkPassword = await bcrypt.compare(args.password, password)
       if (!checkPassword) {
         throw new Error(
@@ -82,8 +84,9 @@ const LOGIN_USER = {
 
       const payload = {
         user: {
-          id: getUser.id,
+          id: id,
           username: username,
+          email: email,
         },
       }
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -93,6 +96,7 @@ const LOGIN_USER = {
         email: email,
         password: password,
         username: username,
+        id: id,
         token: token,
       }
     } catch (err) {

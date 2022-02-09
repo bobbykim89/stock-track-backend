@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
     req.auth = false
     return next()
   }
+
   const token = authHeader.split(' ')[1]
   // Check if token doesn't exist
   if (!token || token === '') {
@@ -22,8 +23,7 @@ module.exports = (req, res, next) => {
     if (req.user) {
       req.auth = true
     }
-    console.log(req.user)
-    next()
+    return next()
   } catch (err) {
     req.auth = false
     throw err

@@ -1,9 +1,4 @@
-const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLID,
-  GraphQLList,
-} = require('graphql')
+const { GraphQLObjectType, GraphQLString, GraphQLID } = require('graphql')
 const user = require('../../models/user')
 const UserType = require('./userType')
 
@@ -13,11 +8,13 @@ const PostType = new GraphQLObjectType({
     id: { type: GraphQLID },
     code: { type: GraphQLString },
     author: {
-      type: new GraphQLList(UserType),
-      resolve(parent, args) {
-        return user.find({ userId: parent.id })
+      type: UserType,
+      resolve(root, args) {
+        const getUser = user.findById(root.author)
+        return getUser
       },
     },
+    date: { type: GraphQLString },
   }),
 })
 
