@@ -4,14 +4,16 @@ const cors = require('cors')
 const connectDB = require('./database')
 const schema = require('./schema/index')
 const auth = require('./middleware/auth')
+const bodyParser = require('body-parser')
 
 const app = express()
 
 // Connect to DB
 connectDB()
 
-// Allow cross-origin requests
+// Allow cross-origin requests & body parser
 app.use(cors())
+app.use(bodyParser.json())
 
 // Apply auth check middleware
 app.use(auth)

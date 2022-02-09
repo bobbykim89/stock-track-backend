@@ -18,7 +18,7 @@ const GET_CURRENT_USER = {
       throw new Error('Unauthenticated')
     }
     try {
-      const currentUser = await user.findbyId(req.user.id).select('-password')
+      const currentUser = await user.findById(req.user.id).select('-password')
       return currentUser
     } catch (err) {
       throw err
