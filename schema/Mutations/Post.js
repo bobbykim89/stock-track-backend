@@ -15,6 +15,7 @@ const CREATE_POST = {
   type: PostType,
   args: {
     code: { type: new GraphQLNonNull(GraphQLString) },
+    name: { type: new GraphQLNonNull(GraphQLString) },
   },
   async resolve(root, args, req) {
     if (!req.auth) {
@@ -23,9 +24,10 @@ const CREATE_POST = {
     try {
       const newPost = new post({
         code: args.code,
+        name: args.name,
         author: req.user.id,
       })
-      const { code, author } = newPost
+      const { code, name, author } = newPost
       console.log(author)
       if (!author || !code) {
         throw new Error(
