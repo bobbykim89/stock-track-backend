@@ -27,8 +27,7 @@ const CREATE_POST = {
         name: args.name,
         author: req.user.id,
       })
-      const { code, name, author } = newPost
-      console.log(author)
+      const { code, author } = newPost
       if (!author || !code) {
         throw new Error(
           'Some of required requests are missing please try again'
