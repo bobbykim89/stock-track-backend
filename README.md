@@ -1,17 +1,23 @@
 # Stock Track Backend (v0.1.0 In progress)
 
-Backend part of MEVNG stack application to get stock info.
+Backend part of MEVNG stack application to get stock info. Frontend script information can be found in this [Repository](https://github.com/bobbykim89/stock-track-backend)
 
 ## Scripts
 
-### Start: `yarn start`
+```bash
+# install dependencies
+$ yarn install
 
-Runs server
-Port 4000 assigned [http://localhost:4000/graphql](http://localhost:4000/graphql)
+# serve at localhost:4000
+$ yarn start
 
-### Watch: `yarn watch`
+# serve with live reload at localhost:4000
+$ yarn watch
+$ yarn start
 
-Runs server using nodemon on [http://localhost:4000/graphql](http://localhost:4000/graphql)
+# generate static project
+$ yarn generate
+```
 
 ## Dependencies
 
@@ -20,16 +26,20 @@ express\
 express-graphql\
 graphql\
 mongoose\
-body-parser
+body-parser\
+bcryptjs\
+jsonwebtoken
 
-## Progress
+### Dev-dependencies
 
-1. User: Signup, Login, GetCurrentUser available.
-2. Posts: get all posts (will delete later), get user posts, write and delete post functionalities available.
+dotenv\
+nodemon
 
 ## Changes
 
-N/A
+1. User: Signup, Login, GetCurrentUser available.
+2. Posts: get all posts (will delete later), get user posts, write and delete post available.
+3. Todo: get user todos, write, edit and delete todo available.
 
 ## Known Issues
 
