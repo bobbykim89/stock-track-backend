@@ -49,7 +49,6 @@ const EDIT_TODO = {
     id: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: GraphQLString },
     content: { type: GraphQLString },
-    complete: { type: GraphQLBoolean },
     type: { type: GraphQLString },
   },
   async resolve(root, args, req) {
@@ -66,7 +65,6 @@ const EDIT_TODO = {
         {
           title: args.title,
           content: args.content,
-          complete: args.complete,
           type: args.type,
         },
         { new: true }
