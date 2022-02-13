@@ -12,7 +12,9 @@ const GET_USER_TODOS = {
       if (!req.user.id) {
         throw new Error('Unauthenticated')
       }
-      const myTodos = await todo.find({ author: req.user.id })
+      const myTodos = await todo
+        .find({ author: req.user.id })
+        .sort({ date: -1 })
       return myTodos
     } catch (err) {
       throw err
