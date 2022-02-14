@@ -17,8 +17,8 @@ const corsOptions = {
 connectDB()
 
 // Allow cross-origin requests & body parser
-app.use(cors())
 app.use(bodyParser.json())
+app.use(cors(corsOptions))
 
 // Apply auth check middleware
 app.use(auth)
