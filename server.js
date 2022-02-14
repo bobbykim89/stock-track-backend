@@ -4,6 +4,7 @@ const connectDB = require('./database')
 const schema = require('./schema/index')
 const auth = require('./middleware/auth')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const app = express()
 
@@ -12,15 +13,12 @@ connectDB()
 
 // Allow cross-origin requests & body parser
 app.use(bodyParser.json())
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-  res.setHeader(('Access-Control-Allow-Headers', 'Content-Type, Authorization'))
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200)
-  }
-  next()
-})
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+)
 
 // Apply auth check middleware
 app.use(auth)
