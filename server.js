@@ -13,13 +13,16 @@ connectDB()
 
 // Allow cross-origin requests
 const corsConfig = {
-  origin: 'http://127.0.0.1',
+  origin:
+    process.env.NODE_ENV === 'production'
+      ? 'https://stock-track-woad.vercel.app'
+      : 'http://localhost:3000',
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
+  // methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
   // allowedHeaders: ['Content-Type', 'Authorization'],
 }
 
-app.use(cors())
+app.use(cors(corsConfig))
 
 app.use(
   cacheControl({
