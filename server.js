@@ -1,24 +1,26 @@
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
-const cors = require('cors')
 const connectDB = require('./database')
 const schema = require('./schema/index')
 const auth = require('./middleware/auth')
 const bodyParser = require('body-parser')
 
 const app = express()
-const corsOptions = {
-  origin: '*',
-  credentials: true,
-  optionSuccessStatus: 200,
-}
 
 // Connect to DB
 connectDB()
 
 // Allow cross-origin requests & body parser
 app.use(bodyParser.json())
-app.use(cors(corsOptions))
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+  res.setHeader(('Access-Control-Allow-Headers', 'Content-Type, Authorization'))
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200)
+  }
+  next()
+})
 
 // Apply auth check middleware
 app.use(auth)
