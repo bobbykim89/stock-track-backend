@@ -12,19 +12,18 @@ const app = express()
 connectDB()
 
 // Allow cross-origin requests
+const corsConfig = {
+  origin: 'http://127.0.0.1',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
+  // allowedHeaders: ['Content-Type', 'Authorization'],
+}
 
-app.use(
-  cors({
-    origin: ['https://stock-track-woad.vercel.app/', 'http://localhost:3000/'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-)
+app.use(cors())
 
 app.use(
   cacheControl({
-    noCache: true,
+    maxAge: 5,
   })
 )
 
