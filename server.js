@@ -15,7 +15,7 @@ connectDB()
 
 app.use(
   cors({
-    origin: true,
+    origin: ['https://stock-track-woad.vercel.app/', 'http://localhost:3000/'],
     credentials: true,
   })
 )
