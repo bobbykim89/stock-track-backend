@@ -7,6 +7,11 @@ const auth = require('./middleware/auth')
 const bodyParser = require('body-parser')
 
 const app = express()
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
+}
 
 // Connect to DB
 connectDB()
