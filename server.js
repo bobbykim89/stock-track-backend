@@ -12,7 +12,7 @@ const app = express()
 connectDB()
 
 // Allow cross-origin requests & body parser
-app.use(bodyParser.json())
+
 app.use(
   cors({
     origin: true,
