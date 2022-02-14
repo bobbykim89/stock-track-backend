@@ -3,21 +3,28 @@ const { graphqlHTTP } = require('express-graphql')
 const connectDB = require('./database')
 const schema = require('./schema/index')
 const auth = require('./middleware/auth')
-const bodyParser = require('body-parser')
 const cors = require('cors')
+const cacheControl = require('express-cache-controller')
 
 const app = express()
 
 // Connect to DB
 connectDB()
 
-// Allow cross-origin requests & body parser
+// Allow cross-origin requests
 
 app.use(
   cors({
     origin: ['https://stock-track-woad.vercel.app/', 'http://localhost:3000/'],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT'],
+    methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+)
+
+app.use(
+  cacheControl({
+    noCache: true,
   })
 )
 
